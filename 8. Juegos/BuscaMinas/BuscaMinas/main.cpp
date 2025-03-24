@@ -13,6 +13,7 @@ int main()
     const bool MODODESARROLLADOR = false;
     const int VIDASTABLERO = 3;
     Config configuracionJuego(FILASTABLERO, COLUMNASTABLERO, MINASENTABLERO, MODODESARROLLADOR, VIDASTABLERO);
+    //Agregar vidasTablero
     Juego juego(Tablero(configuracionJuego.getfilasTablero(), configuracionJuego.getcolumnasTablero(), configuracionJuego.getmodoDesarrolladorTablero()), configuracionJuego.getminasTablero(), configuracionJuego.getvidasTablero());
     srand(getpid());
     int opciones;

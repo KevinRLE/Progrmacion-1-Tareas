@@ -247,40 +247,26 @@
 	<sstream>
 	<iostream>
 
-1742789564 source:c:\users\usuario\documents\progra\programación 1\progrmacion-1-tareas\8. juegos\buscaminas\buscaminas\main.cpp
-	<iostream>
-	<unistd.h>
-	"Juego.h"
-	"Config.h"
-
-1742789943 c:\users\usuario\documents\progra\programación 1\progrmacion-1-tareas\8. juegos\buscaminas\buscaminas\include\juego.h
-	"Tablero.h"
-
-1742571259 c:\users\usuario\documents\progra\programación 1\progrmacion-1-tareas\8. juegos\buscaminas\buscaminas\include\tablero.h
-	<iostream>
-	<vector>
-	"Celda.h"
-
-1742568075 c:\users\usuario\documents\progra\programación 1\progrmacion-1-tareas\8. juegos\buscaminas\buscaminas\include\celda.h
-
-1742571259 c:\users\usuario\documents\progra\programación 1\progrmacion-1-tareas\8. juegos\buscaminas\buscaminas\include\config.h
-
 1742568075 source:c:\users\usuario\documents\progra\programación 1\progrmacion-1-tareas\8. juegos\buscaminas\buscaminas\src\celda.cpp
 	"Celda.h"
 	<iostream>
+
+1742568075 c:\users\usuario\documents\progra\programación 1\progrmacion-1-tareas\8. juegos\buscaminas\buscaminas\include\celda.h
 
 1742790371 source:c:\users\usuario\documents\progra\programación 1\progrmacion-1-tareas\8. juegos\buscaminas\buscaminas\src\config.cpp
 	<iostream>
 	<unistd.h>
 	"Config.h"
 
-1742790406 source:c:\users\usuario\documents\progra\programación 1\progrmacion-1-tareas\8. juegos\buscaminas\buscaminas\src\juego.cpp
-	"Juego.h"
-	<fstream>
-	<unistd.h>
+1742571259 c:\users\usuario\documents\progra\programación 1\progrmacion-1-tareas\8. juegos\buscaminas\buscaminas\include\config.h
 
 1742571259 source:c:\users\usuario\documents\progra\programación 1\progrmacion-1-tareas\8. juegos\buscaminas\buscaminas\src\tablero.cpp
 	"Tablero.h"
 	<sstream>
 	<iostream>
+
+1742571259 c:\users\usuario\documents\progra\programación 1\progrmacion-1-tareas\8. juegos\buscaminas\buscaminas\include\tablero.h
+	<iostream>
+	<vector>
+	"Celda.h"
 

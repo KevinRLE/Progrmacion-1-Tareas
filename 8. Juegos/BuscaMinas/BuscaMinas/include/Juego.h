@@ -11,7 +11,7 @@ private:
 	int aleatorio_en_rango(int minimo, int maximo);
 	int filaAleatoria();
 	int columnaAleatoria();
-	int vidas; //agregar
+	int vidas; //agregar vidas
 public:
     Juego(Tablero tablero, int cantidadMinas, int vidasTablero);
 	void colocarMinasAleatoriamente();

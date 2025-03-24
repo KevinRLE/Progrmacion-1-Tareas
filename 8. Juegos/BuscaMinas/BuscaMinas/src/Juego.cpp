@@ -16,13 +16,13 @@ int Juego::aleatorio_en_rango(int minimo, int maximo)
 	{
 		return this->aleatorio_en_rango(0, this->tablero.getAnchoTablero() - 1);
 	}
-
+    //agregar parametro vidas
 	Juego::Juego(Tablero tablero, int cantidadMinas, int vidas)
 	{
 		this->tablero = tablero;
 		this->cantidadMinas = cantidadMinas;
 		this->colocarMinasAleatoriamente();
-		this->vidas = vidas; //agregar
+		this->vidas = vidas; //agregar y declarar vidas
 	}
 
 	void Juego::colocarMinasAleatoriamente()
@@ -71,7 +71,7 @@ int Juego::aleatorio_en_rango(int minimo, int maximo)
 			fila = this->solicitarFilaUsuario();
 			columna = this->solicitarColumnaUsuario();
 			bool respuestaAUsuario = this->tablero.descubrirMina(columna, fila);
-
+            //cambiar todo el ciclo de juego para las vidas
 			if (!respuestaAUsuario) // Si pisa una mina
             {
                 this->vidas--; // Restar una vida
@@ -85,7 +85,7 @@ int Juego::aleatorio_en_rango(int minimo, int maximo)
                     break;
                 }
             }
-
+            //modificar el else para gestionar las vidas
 			if (this->jugadorGana())
 			{
 				cout << "Ganaste el Juego\n";
