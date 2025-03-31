@@ -11,7 +11,7 @@ private:
 	int aleatorio_en_rango(int minimo, int maximo);
 	int filaAleatoria();
 	int columnaAleatoria();
-	int vidas; //agregar vidas
+	int vidas;
 public:
     Juego(Tablero tablero, int cantidadMinas, int vidasTablero);
 	void colocarMinasAleatoriamente();
@@ -20,6 +20,7 @@ public:
 	bool jugadorGana();
 	void iniciar();
 	void dibujarPortada(string nombreArchivo);
+	int puntosTotal();
 };
 
 #endif // JUEGO_H

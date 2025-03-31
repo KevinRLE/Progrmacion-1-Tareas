@@ -1,3 +1,5 @@
+//Programa Buscaminas Marco Antonio Hernandez Tevelan, Se modifico funcion puntosTotal
+
 #include "Tablero.h"
 #include <sstream>
 #include <iostream>
@@ -9,20 +11,30 @@ Tablero::Tablero()
 }
 Tablero::Tablero(int alturaTablero, int anchoTablero, bool modoDesarrollador)
 {
+    // Limitamos el tamaño máximo a 10x10
+    if (alturaTablero > 10) {
+        alturaTablero = 10;
+    }
+    if (anchoTablero > 10) {
+        anchoTablero = 10;
+    }
+
     this->alturaTablero = alturaTablero;
     this->anchoTablero = anchoTablero;
     this->modoDesarrollador = modoDesarrollador;
+
     int x, y;
-    for (y=0; y < this->alturaTablero; y++)
+    for (y = 0; y < this->alturaTablero; y++)
     {
         vector<Celda> fila;
-        for (x=0; x < this->anchoTablero; x++)
+        for (x = 0; x < this->anchoTablero; x++)
         {
-            fila.push_back((Celda(x, y, false)));
+            fila.push_back(Celda(x, y, false));
         }
         this->contenidoTablero.push_back(fila);
     }
 }
+
 int Tablero::getAlturaTablero()
 {
     return this->alturaTablero;
@@ -209,19 +221,19 @@ void Tablero::imprimirSeparadorEncabezado()
 		}
 		return true;
 	}
-	int Tablero::contarCeldasSinMinasYSinDescubrir()
-	{
-		int x, y, contador = 0;
-		for (y = 0; y < this->alturaTablero; y++)
-		{
-			for (x = 0; x < this->anchoTablero; x++)
-			{
-				Celda celdaTemporal = this->contenidoTablero.at(y).at(x);
-				if (!celdaTemporal.getMinaDescubierta() && !celdaTemporal.getMina())
-				{
-					contador++;
-				}
-			}
-		}
-		return contador;
-	}
+
+	int Tablero::puntosTotal() {
+    int puntosTotal = 0;
+
+    for (int y = 0; y < this->alturaTablero; y++) {
+        for (int x = 0; x < this->anchoTablero; x++) { /
+            Celda celdaTemporal = this->contenidoTablero.at(y).at(x);
+            if (celdaTemporal.getMinaDescubierta() && !celdaTemporal.getMina()) {
+                puntosTotal++;
+            }
+        }
+    }
+
+    return puntosTotal;
+}
+

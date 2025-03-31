@@ -1,6 +1,10 @@
 #include "Juego.h"
 #include <fstream>
 #include <unistd.h>
+#include <iostream>
+#include "Tablero.h"
+
+using namespace std;
 
 int Juego::aleatorio_en_rango(int minimo, int maximo)
 	{
@@ -16,13 +20,13 @@ int Juego::aleatorio_en_rango(int minimo, int maximo)
 	{
 		return this->aleatorio_en_rango(0, this->tablero.getAnchoTablero() - 1);
 	}
-    //agregar parametro vidas
+
 	Juego::Juego(Tablero tablero, int cantidadMinas, int vidas)
 	{
 		this->tablero = tablero;
 		this->cantidadMinas = cantidadMinas;
 		this->colocarMinasAleatoriamente();
-		this->vidas = vidas; //agregar y declarar vidas
+		this->vidas = vidas;
 	}
 
 	void Juego::colocarMinasAleatoriamente()
@@ -41,57 +45,83 @@ int Juego::aleatorio_en_rango(int minimo, int maximo)
 	}
 
 	int Juego::solicitarFilaUsuario()
-	{
-		int fila = 0;
-		cout << "Ingresa la FILA en la que desea jugar: ";
-		cin >> fila;
-		return fila - 1;
-	}
-
-	int Juego::solicitarColumnaUsuario()
-	{
-		int columna = 0;
-		cout << "Ingresa la COLUMNA en la que desea jugar: ";
-		cin >> columna;
-		return columna - 1;
-	}
-
-	bool Juego::jugadorGana()
     {
-        return this->tablero.contarCeldasSinMinasYSinDescubrir() == 0;
+        int fila = 0;
+        bool valido = false;
+        while (!valido)
+        {
+            cout << "Ingresa la FILA en la que desea jugar (1 a " << tablero.getAlturaTablero() << "): ";
+            cin >> fila;
+            if (fila >= 1 && fila <= tablero.getAlturaTablero())
+            {
+                valido = true;
+            }
+            else
+            {
+                cout << "Fila invalida. Debe estar entre 1 y " << tablero.getAlturaTablero() << ".\n";
+            }
+        }
+        return fila - 1;
     }
 
-	void Juego::iniciar()
-	{
-		int fila, columna;
-		while (true)
-		{
-			this->tablero.imprimir();
-			this->vidas = vidas;  //declare vidas
-			fila = this->solicitarFilaUsuario();
-			columna = this->solicitarColumnaUsuario();
-			bool respuestaAUsuario = this->tablero.descubrirMina(columna, fila);
-            //cambiar todo el ciclo de juego para las vidas
-			if (!respuestaAUsuario) // Si pisa una mina
+    int Juego::solicitarColumnaUsuario()
+    {
+        int columna = 0;
+        bool valido = false;
+        while (!valido)
+        {
+            cout << "Ingresa la COLUMNA en la que desea jugar (1 a " << tablero.getAnchoTablero() << "): ";
+            cin >> columna;
+            if (columna >= 1 && columna <= tablero.getAnchoTablero())
             {
-                this->vidas--; // Restar una vida
-                cout << "Pisas una mina! Vidas restantes: " << this->vidas << endl;
-
-                if (this->vidas <= 0)
-                {
-                    cout << "Te quedaste sin vidas. Perdiste el Juego\n";
-                    this->tablero.setModoDesarrollador(true);
-                    this->tablero.imprimir();
-                    break;
-                }
+                valido = true;
             }
-            //modificar el else para gestionar las vidas
-			if (this->jugadorGana())
-			{
-				cout << "Ganaste el Juego\n";
-				this->tablero.setModoDesarrollador(true);
-				this->tablero.imprimir();
-				break;
-			}
-		}
-	}
+            else
+            {
+                cout << "Columna invalida. Debe estar entre 1 y " << tablero.getAnchoTablero() << ".\n";
+            }
+        }
+        return columna - 1;
+    }
+
+	bool Juego::jugadorGana() {
+        int celdasSeguras = (tablero.getAlturaTablero() * tablero.getAnchoTablero()) - cantidadMinas;
+        return (this->tablero.puntosTotal() == celdasSeguras);
+    }
+
+
+void Juego::iniciar() {
+    int fila, columna;
+
+    while (true) {
+        system("cls");
+        cout << "Vidas restantes: " << this->vidas << endl;
+        this->tablero.imprimir();
+        fila = this->solicitarFilaUsuario();
+        columna = this->solicitarColumnaUsuario();
+
+        bool respuestaAUsuario = this->tablero.descubrirMina(columna, fila);
+
+        if (!respuestaAUsuario) {
+            this->vidas--;
+
+            if (this->vidas == 0) {
+                cout << "Te quedaste sin vidas. Perdiste el juego.\n";
+                this->tablero.setModoDesarrollador(true);
+                this->tablero.imprimir();
+                cout << "Acumulaste estos puntos: " << this->tablero.puntosTotal() << endl;
+                return;
+            }
+
+        }
+        else {
+            if (this->jugadorGana()) {
+                cout << "¡Ganaste el juego!\n";
+                this->tablero.setModoDesarrollador(true);
+                this->tablero.imprimir();
+                cout << "Ganaste estos puntos: " << this->tablero.puntosTotal() << endl;
+                return;
+            }
+        }
+    }
+}

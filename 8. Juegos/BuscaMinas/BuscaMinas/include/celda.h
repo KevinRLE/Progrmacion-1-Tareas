@@ -1,7 +1,6 @@
 #ifndef CELDA_H
 #define CELDA_H
-//Libreria que guarda los atributos y los prototipos de los metodos utilizados para crear y administrar las celdas de juego
-//Fecha: 17 marzo 2023
+
 
 class Celda
 {
