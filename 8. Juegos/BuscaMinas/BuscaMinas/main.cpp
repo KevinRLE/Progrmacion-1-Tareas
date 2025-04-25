@@ -9,7 +9,7 @@ int main()
 {
     const int FILASTABLERO = 5;
     const int COLUMNASTABLERO = 5;
-    const int MINASENTABLERO = 3;
+    const int MINASENTABLERO = 2;
     const bool MODODESARROLLADOR = false;
     const int VIDASTABLERO = 3;
     Config configuracionJuego(FILASTABLERO, COLUMNASTABLERO, MINASENTABLERO, MODODESARROLLADOR, VIDASTABLERO);
